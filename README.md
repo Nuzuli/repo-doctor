@@ -31,28 +31,23 @@ repo-doctor . --min-score 70   # exit code 1 if the score is below 70
 
 ```text
 repo-doctor 0.1.0
-Path:  /home/user/my-project
-Score: 60/100 (D)
+Path:  /home/runner/work/repo-doctor/repo-doctor
+Score: 100/100 (A)
 
-[FAIL] lockfile (15)
+[PASS] lockfile (15)
 [PASS] ci (15)
 [PASS] tests (15)
 [PASS] readme (10)
 [PASS] license (5)
-[FAIL] lint_config (10)
-[FAIL] type_config (5)
+[PASS] lint_config (10)
+[PASS] type_config (5)
 [PASS] gitignore (5)
-[FAIL] changelog (5)
+[PASS] changelog (5)
 [PASS] ci_runs_tests (10)
-[FAIL] ci_runs_lint (5)
-
-To improve (highest impact first):
-  - Commit a lockfile (requirements-lock.txt, poetry.lock, or uv.lock) so installs are reproducible. (+15)
-  - Configure a linter such as ruff in pyproject.toml. (+10)
-  - Configure a type checker such as mypy in pyproject.toml. (+5)
-  - Keep a CHANGELOG.md so users can see what changed between releases. (+5)
-  - Make your CI workflow run the linter (for example ruff check .). (+5)
+[PASS] ci_runs_lint (5)
 ```
+
+That is repo-doctor checking its own repository in CI. When something fails, it also prints a "To improve" list, highest impact first.
 
 ## What it checks
 
@@ -86,6 +81,7 @@ Grades: A (90+), B (80+), C (70+), D (50+), F (below 50).
 ```bash
 pip install -e ".[dev]"
 ruff check .
+mypy repo_doctor
 pytest
 ```
 
