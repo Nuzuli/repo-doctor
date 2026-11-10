@@ -23,6 +23,8 @@ jobs:
           pip install -e ".[dev]"
       - name: Lint
         run: ruff check .
+      - name: Type check
+        run: mypy repo_doctor
       - name: Test
         run: pytest --cov=repo_doctor --cov-report=term-missing
       - name: Repo health (self check)
