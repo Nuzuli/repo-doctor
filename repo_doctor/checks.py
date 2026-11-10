@@ -12,6 +12,14 @@ LOCKFILES = [
     "pdm.lock",
 ]
 LICENSE_FILES = ["LICENSE", "LICENSE.md", "LICENSE.txt", "COPYING"]
+CONTRIBUTING_FILES = ["CONTRIBUTING.md", ".github/CONTRIBUTING.md"]
+UPDATE_BOT_FILES = [
+    ".github/dependabot.yml",
+    ".github/dependabot.yaml",
+    "renovate.json",
+    ".github/renovate.json",
+    ".renovaterc",
+]
 
 
 @dataclass(frozen=True)
@@ -74,25 +82,25 @@ def run_checks(root: Path) -> list[CheckResult]:
         CheckResult(
             "lockfile",
             _any_exists(root, LOCKFILES),
-            15,
+            12,
             "Commit a lockfile (requirements-lock.txt, poetry.lock, or uv.lock) so installs are reproducible.",
         ),
         CheckResult(
             "ci",
             bool(_workflow_files(root)),
-            15,
+            12,
             "Add a workflow in .github/workflows/ so every push is checked automatically.",
         ),
         CheckResult(
             "tests",
             has_tests,
-            15,
+            13,
             "Add a tests/ folder with test_*.py files that check real behavior.",
         ),
         CheckResult(
             "readme",
             _readme_lines(root) >= 15,
-            10,
+            8,
             "Expand the README (install, usage, tests) to at least 15 non-empty lines.",
         ),
         CheckResult(
@@ -104,7 +112,7 @@ def run_checks(root: Path) -> list[CheckResult]:
         CheckResult(
             "lint_config",
             has_lint,
-            10,
+            9,
             "Configure a linter such as ruff in pyproject.toml.",
         ),
         CheckResult(
@@ -136,5 +144,23 @@ def run_checks(root: Path) -> list[CheckResult]:
             "ruff" in workflows or "flake8" in workflows,
             5,
             "Make your CI workflow run the linter (for example ruff check .).",
+        ),
+        CheckResult(
+            "contributing",
+            _any_exists(root, CONTRIBUTING_FILES),
+            3,
+            "Add a CONTRIBUTING.md that explains how to set up, test, and submit changes.",
+        ),
+        CheckResult(
+            "dependency_updates",
+            _any_exists(root, UPDATE_BOT_FILES),
+            5,
+            "Enable automatic dependency updates with .github/dependabot.yml or renovate.json.",
+        ),
+        CheckResult(
+            "ci_runs_typecheck",
+            "mypy" in workflows or "pyright" in workflows,
+            3,
+            "Make your CI workflow run a type checker (for example mypy).",
         ),
     ]
