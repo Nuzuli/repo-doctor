@@ -1,0 +1,11 @@
+# Changelog
+
+All notable changes to this project are documented in this file.
+
+## [0.1.0] - 2026-11-10
+
+### Added
+- 11 repository health checks: lockfile, CI, tests, README, license, lint config, type config, .gitignore, changelog, and whether CI runs tests and lint.
+- `repo-doctor` command with text and `--json` output.
+- `--min-score` option that exits with code 1 when the score is too low.
+- GitHub Actions workflow that tests on Python 3.10 and 3.12 and runs repo-doctor on itself.
