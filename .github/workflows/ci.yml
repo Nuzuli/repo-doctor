@@ -25,3 +25,5 @@ jobs:
         run: ruff check .
       - name: Test
         run: pytest --cov=repo_doctor --cov-report=term-missing
+      - name: Repo health (self check)
+        run: repo-doctor .
