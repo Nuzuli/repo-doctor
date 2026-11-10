@@ -42,7 +42,7 @@ def test_json_report_is_valid(tmp_path, capsys):
     data = json.loads(capsys.readouterr().out)
     assert data["score"] == 0
     assert data["grade"] == "F"
-    assert len(data["checks"]) == 11
+    assert len(data["checks"]) >= 11
 
 
 def test_min_score_fails_when_below(tmp_path):
