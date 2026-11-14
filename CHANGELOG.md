@@ -2,6 +2,18 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.2.0] - 2026-11-14
+
+### Added
+- Three new checks: `contributing` (a CONTRIBUTING.md exists), `dependency_updates` (dependabot or renovate is configured), and `ci_runs_typecheck` (a workflow runs mypy or pyright). The tool now has 14 checks.
+- `CONTRIBUTING.md` explaining how to set up the project and add a new check.
+- `.github/dependabot.yml` for weekly updates of pip packages and GitHub Actions.
+- `mypy` type check step in CI.
+
+### Changed
+- Check weights were rebalanced so the total is still exactly 100.
+- README documents all 14 checks and shows real self-check output.
+
 ## [0.1.0] - 2026-11-10
 
 ### Added
