@@ -27,7 +27,7 @@ repo-doctor . --min-score 70   # exit code 1 if the score is below 70
 
 ## Example output
 
-Excerpt from repo-doctor checking its own repository in CI:
+That is repo-doctor checking its own repository in CI:
 
 ```
 repo-doctor 0.2.0
@@ -38,7 +38,16 @@ Score: 100/100 (A)
 [PASS] ci (12)
 [PASS] tests (13)
 [PASS] readme (8)
-...
+[PASS] license (5)
+[PASS] lint_config (9)
+[PASS] type_config (5)
+[PASS] gitignore (5)
+[PASS] changelog (5)
+[PASS] ci_runs_tests (10)
+[PASS] ci_runs_lint (5)
+[PASS] contributing (3)
+[PASS] dependency_updates (5)
+[PASS] ci_runs_typecheck (3)
 ```
 
 When something fails, it also prints a "To improve" list, highest impact first.
@@ -47,22 +56,22 @@ When something fails, it also prints a "To improve" list, highest impact first.
 
 14 checks, with weights that add up to exactly 100:
 
-| Check               | Passes when                                                                    |
-| ------------------- | ------------------------------------------------------------------------------ |
-| lockfile            | a lockfile such as `requirements-lock.txt`, `poetry.lock`, or `uv.lock` exists |
-| ci                  | `.github/workflows/` has a `.yml` or `.yaml` file                              |
-| tests               | `tests/` contains `test_*.py` files                                            |
-| readme              | the README has at least 15 non-empty lines                                     |
-| lint_config         | ruff or flake8 is configured                                                   |
-| ci_runs_tests       | a workflow runs pytest or unittest                                             |
-| license             | a `LICENSE` file exists                                                        |
-| type_config         | mypy or pyright is configured                                                  |
-| gitignore           | a `.gitignore` exists                                                          |
-| changelog           | a `CHANGELOG.md` exists                                                        |
-| ci_runs_lint        | a workflow runs ruff or flake8                                                 |
-| contributing        | a `CONTRIBUTING.md` exists                                                     |
-| dependency_updates  | dependabot or renovate is configured                                           |
-| ci_runs_typecheck   | a workflow runs mypy or pyright                                                |
+| Check              | Weight | Passes when                                                                    |
+| ------------------ | ------ | ------------------------------------------------------------------------------ |
+| tests              | 13     | `tests/` contains `test_*.py` files                                            |
+| lockfile           | 12     | a lockfile such as `requirements-lock.txt`, `poetry.lock`, or `uv.lock` exists |
+| ci                 | 12     | `.github/workflows/` has a `.yml` or `.yaml` file                              |
+| ci_runs_tests      | 10     | a workflow runs pytest or unittest                                             |
+| lint_config        | 9      | ruff or flake8 is configured                                                   |
+| readme             | 8      | the README has at least 15 non-empty lines                                     |
+| license            | 5      | a `LICENSE` file exists                                                        |
+| type_config        | 5      | mypy or pyright is configured                                                  |
+| gitignore          | 5      | a `.gitignore` exists                                                          |
+| changelog          | 5      | a `CHANGELOG.md` exists                                                        |
+| ci_runs_lint       | 5      | a workflow runs ruff or flake8                                                 |
+| dependency_updates | 5      | dependabot or renovate is configured                                           |
+| contributing       | 3      | a `CONTRIBUTING.md` exists                                                     |
+| ci_runs_typecheck  | 3      | a workflow runs mypy or pyright                                                |
 
 Grades: A (90+), B (80+), C (70+), D (50+), F (below 50).
 
