@@ -12,9 +12,9 @@ repo-doctor looks at your project folder and checks the things buyers, contribut
 
 ## Install
 
-```bash
-pip install git+https://github.com/Nuzuli/repo-doctor.git
-```
+Nama paket di PyPI adalah `pyrepo-doctor`; perintahnya tetap `repo-doctor`.
+
+pip install pyrepo-doctor
 
 Requires Python 3.10 or newer. It has zero third-party dependencies.
 
