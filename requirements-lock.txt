@@ -34,7 +34,7 @@ pytest==9.2.0
     #   repo-doctor (pyproject.toml)
 pytest-cov==7.1.0
     # via repo-doctor (pyproject.toml)
-ruff==0.17.4
+ruff==0.17.6
     # via repo-doctor (pyproject.toml)
 tomli==2.5.0
     # via
